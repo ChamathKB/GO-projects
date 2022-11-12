@@ -5,18 +5,7 @@ import (
 	"net/http"
 )
 
-const addForm = `
-<html>
-<body>
-<form method="POST" action="/add">
-	URL: <input type="text" name="url>
-	<input type="submit" value="Add">
-</form>
-</body>
-</html>
-`
-
-var store = NewUrlStore()
+var store = NewURLStore("store.gob")
 
 func main() {
 	http.HandleFunc("/", Redirect)
@@ -42,6 +31,14 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	key := store.Put(url)
-
 	fmt.Fprintf(w, "%s", key)
 }
+
+const addForm = `
+<html><body>
+<form method="POST" action="/add">
+URL: <input type="text" name="url">
+<input type="submit" value="Add">
+</form>
+</html></body>
+`

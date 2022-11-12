@@ -9,7 +9,6 @@ func genKey(n int) string {
 	l := len(keyChar)
 	s := make([]byte, 20)
 	i := len(s)
-
 	for n > 0 && i >= 0 {
 		i--
 		j := n % l
